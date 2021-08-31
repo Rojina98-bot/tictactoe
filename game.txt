@@ -1,0 +1,166 @@
+
+#include<stdio.h>
+#include<conio.h>
+void displayboard(int,char);
+void display(void);
+int check(void); //argument in array
+int endloop(void);
+char assign[9]={'N','N','N','N','N','N','N','N','N'};//global variable,for unchanged value required for the game
+int main()
+{
+    int x,i,win,add,num;
+    char play;
+    //int ivalue[9]={0}; //initialization
+    for(i=0;i<=11;i++){ //game can be of 9 only iteration
+    win=check(); //checking the winnning pattern (check out the passing of argument in array)
+    if (win==0||win==1) //ending game if the winner is found
+    break;
+    num=endloop();
+    if(num==9)
+    break;
+    printf("WHAT PLAYER ARE YOU? A OR B\n");
+    scanf(" %c",&play);//add space before c else you will get an error
+    printf("Enter number of board(0-9) you want to place your X or 0\n");
+    scanf("%d",&add);
+    for (x=0;x<=8;x++) //for validation of entered number
+    {
+        
+        if (x==add)
+            {
+                   
+                displayboard(x,play);
+                   
+            }
+        
+    }}
+    if (win==0) //after break statement
+    {
+        printf("A is the winner");
+    }
+    else if(win==1)
+    {
+        printf("B is the winneer");
+    }
+    return 0;}
+
+
+void displayboard(int r,char p) //displaying purpose
+{
+    //int i,count=0;
+    if (assign[r]!='X'&&assign[r]!='Y') //checking whether the box is empty or not
+    {if (p=='a'||p=='A') //for player a
+    {
+    assign[r]='X';
+    display();
+    
+}
+
+
+else if (p=='B'||p=='b'){ //for player b
+    assign[r]='Y';
+    display();
+    
+   
+    }}}
+int check(void) //checking the correct pattern
+{
+    
+    if (assign[0]=='X'&&assign[1]=='X'&&assign[2]=='X')
+    {
+       return 0;
+    }
+    else if(assign[3]=='X'&&assign[4]=='X'&&assign[5]=='X') 
+    {
+        return 0;
+    }
+    else if(assign[6]=='X'&&assign[7]=='X'&&assign[8]=='X') 
+    {
+        return 0;
+    }
+    else if(assign[0]=='X'&&assign[4]=='X'&&assign[8]=='X') 
+    {
+        return 0;
+    }
+    else if(assign[2]=='X'&&assign[4]=='X'&&assign[6]=='X') 
+    {
+        return 0;
+    }
+    else if(assign[0]=='X'&&assign[3]=='X'&&assign[6]=='X')
+    {
+        return 0;
+    }
+    else if(assign[1]=='X'&&assign[4]=='X'&&assign[7]=='X')
+    {
+        return 0;
+    }
+    else if(assign[2]=='X'&&assign[5]=='X'&&assign[8]=='X')
+    {
+        return 0;
+    }
+    else if(assign[0]=='Y'&&assign[1]=='Y'&&assign[2]=='Y') 
+    {
+        return 1;
+    }
+     else if(assign[3]=='Y'&&assign[4]=='Y'&&assign[5]=='Y') 
+    {
+        return 1;
+    }
+     else if(assign[6]=='Y'&&assign[7]=='Y'&&assign[8]=='Y') 
+    {
+        return 1;
+    }
+     else if(assign[0]=='Y'&&assign[4]=='Y'&&assign[8]=='Y') 
+    {
+       return 1; 
+    }
+     else if(assign[2]=='Y'&&assign[4]=='Y'&&assign[6]=='Y') 
+    {
+        return 1;
+    }
+    else if(assign[0]=='Y'&&assign[3]=='Y'&&assign[6]=='Y')
+    {
+        return 1;
+    }
+    else if(assign[1]=='Y'&&assign[4]=='Y'&&assign[7]=='Y')
+    {
+        return 1;
+    }
+    else if(assign[2]=='Y'&&assign[5]=='Y'&&assign[8]=='Y')
+    {
+        return 1;
+    }
+    return 2; //has no significance in main,just tells that the game is not decided
+     
+
+
+}
+void display()
+{
+    int i,count=0;
+    for(i=0;i<9;i++)
+    {
+        printf("%c\t",assign[i]);
+        ++count;
+        if(count==3)
+        {
+            printf("\n");
+            count=0;
+        }
+        
+    }
+
+}
+int endloop(void)
+{
+    int i,num=0;
+    for(i=0;i<9;i++)
+    {
+        if(assign[i]!='N')
+        num++;
+    }
+    return num;
+
+}
+
+
+    
